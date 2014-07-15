@@ -1,0 +1,28 @@
+--- t1_lib.c.original   2014-07-04 17:29:35.092000000 +0100
++++ t1_lib.c    2014-07-04 17:31:44.528000000 +0100
+@@ -2583,6 +2583,7 @@
+ #endif
+
+ #ifndef OPENSSL_NO_HEARTBEATS
++#define PAYLOAD_EXTRA 16
+ int
+ tls1_process_heartbeat(SSL *s)
+        {
+@@ -2646,7 +2647,7 @@
+                 * sequence number */
+                n2s(pl, seq);
+
+-               if (payload == 18 && seq == s->tlsext_hb_seq)
++               if ((payload == (18 + PAYLOAD_EXTRA)) && seq == s->tlsext_hb_seq)
+                        {
+                        s->tlsext_hb_seq++;
+                        s->tlsext_hb_pending = 0;
+@@ -2705,7 +2706,7 @@
+        /* Message Type */
+        *p++ = TLS1_HB_REQUEST;
+        /* Payload length (18 bytes here) */
+-       s2n(payload, p);
++       s2n(payload + PAYLOAD_EXTRA, p);
+        /* Sequence number */
+        s2n(s->tlsext_hb_seq, p);
+        /* 16 random bytes */
