@@ -1,2 +1,1 @@
-bulletproof-tls
-===============
+This repository contains additional material for my book, Bulletproof SSL and TLS.
