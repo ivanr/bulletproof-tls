@@ -13,7 +13,7 @@ A server that doesn't respond isn't vulnerable. A server that returns
 more data than it receives is vulnerable.
 
 This is an example of a server returning 16 bytes of server data
-(equivalent of setting PAYLOAD_EXTRA to 32).
+(equivalent of setting PAYLOAD_EXTRA to 32):
 
 ---
 B
