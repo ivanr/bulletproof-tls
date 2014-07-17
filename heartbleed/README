@@ -3,6 +3,8 @@ test is non-invasive and won't return any server data. If you want to use
 an instrusive test (which is necessary to differentiate OpenSSL from
 GnuTLS), increase the value.
 
+ | NOTE Use only on systems that you are allowed to test.
+
 To test, invoke the patched version of OpenSSL, type B and press RETURN:
 
     $ ./openssl-heartbleed -connect www.example.com:443 -msg
