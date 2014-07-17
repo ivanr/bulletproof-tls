@@ -1,0 +1,22 @@
+Patch OpenSSL and compile. With PAYLOAD_EXTRA set to 16 (the default), the
+test is non-invasive and won't return any server data. If you want to use
+an instrusive test (which is necessary to differentiate OpenSSL from
+GnuTLS), increase the value.
+
+To test:
+
+$ ./openssl-heartbleed -connect www.example.com:443 -msg
+[...]
+---
+B
+HEARTBEATING
+>>> TLS 1.2  [length 0025], HeartbeatRequest
+    01 00 12 00 00 3c 83 1a 9f 1a 5c 84 aa 86 9e 20
+    c7 a2 ac d7 6f f0 c9 63 9b d5 85 bf 9a 47 61 27
+    d5 22 4c 70 75
+<<< TLS 1.2  [length 0025], HeartbeatResponse
+    02 00 12 00 00 3c 83 1a 9f 1a 5c 84 aa 86 9e 20
+    c7 a2 ac d7 6f 52 4c ee b3 d8 a1 75 9a 6b bd 74
+    f8 60 32 99 1c
+read R BLOCK
+
