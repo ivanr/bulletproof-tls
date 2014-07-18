@@ -1,9 +1,14 @@
-Patch OpenSSL and compile. With PAYLOAD_EXTRA set to 16 (the default), the
-test is non-invasive and won't return any server data. If you want to use
-an instrusive test (which is necessary to differentiate OpenSSL from
-GnuTLS), increase the value.
+Patch OpenSSL and compile. The resulting openssl binary will be in the
+apps/ subdirectory. It's best that you rename it (e.g., to
+openssl-heartbleed) and copy somewhere else.
 
- | NOTE Use only on systems that you are allowed to test.
+With PAYLOAD_EXTRA set to 16 (the default), the test is non-invasive and
+won't return any server data. If you want to use an instrusive test (which
+is necessary to differentiate vulnerable OpenSSL from non-vulnerable GnuTLS),
+increase the value.
+
+ | NOTE Use only on systems that you are allowed to test. Under
+ |      no circumstances test systems for which you have no permission.
 
 To test, invoke the patched version of OpenSSL, type B and press RETURN:
 
