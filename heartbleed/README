@@ -7,7 +7,7 @@ GnuTLS), increase the value.
 
 To test, invoke the patched version of OpenSSL, type B and press RETURN:
 
-    $ ./openssl-heartbleed -connect www.example.com:443 -msg
+    $ ./openssl-heartbleed s_client -connect www.example.com:443 -msg
 
 A server that doesn't respond isn't vulnerable. A server that returns
 more data than it receives is vulnerable.
