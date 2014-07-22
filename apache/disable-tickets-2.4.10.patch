@@ -1,0 +1,13 @@
+--- ./modules/ssl/ssl_engine_init.c.orig	2014-07-14 05:29:22.000000000 -0700
++++ ./modules/ssl/ssl_engine_init.c	2014-07-21 08:07:17.584482127 -0700
+@@ -583,6 +583,11 @@
+         SSL_CTX_set_mode(ctx, SSL_MODE_RELEASE_BUFFERS);
+ #endif
+ 
++#ifdef SSL_OP_NO_TICKET
++    /* Disable session tickets. */
++    SSL_CTX_set_options(ctx, SSL_OP_NO_TICKET); 
++#endif
++
+     return APR_SUCCESS;
+ }
